@@ -27,6 +27,8 @@ const globalStyles = css`
 
 const Pages = () => (
   <ThemeProvider theme={{
+    background: '#FFFFFF',
+    text: '#222222',
     primary: '#68751A',
     primaryLight: '#AEC78F',
     secondary: '#FFE978',

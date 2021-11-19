@@ -1,5 +1,13 @@
+import {
+  Navigation,
+} from 'components'
+
 const Home = () => (
-  <div>Home page</div>
+  <div>
+    <h1>Home page</h1>
+
+    <Navigation />
+  </div>
 )
 
 export default Home
