@@ -7,7 +7,9 @@ const Home = () => (
     <p>How it works</p>
     <p>Some info</p>
 
-    <p><Link to="/login">Login</Link> | <Link to="/signup">Signup</Link></p>
+    <p>
+      <Link to="/login">Login</Link> | <Link to="/signup">Signup</Link>
+    </p>
   </div>
 )
 
