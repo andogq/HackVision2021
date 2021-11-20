@@ -1,4 +1,8 @@
-import { Map } from "components"
+import { Map, Navigation } from 'components'
+
+import {
+  Container,
+} from './mapStyle'
 
 const defaultCenter = {
   name: "RMIT Building 80",
@@ -23,10 +27,11 @@ const pins = [
 
 const MapView = () => {
   return (
-    <div>
-      <h1>This is a map</h1>
-      <Map defaultCenter={defaultCenter} zoom={14} pins={pins} />
-    </div>
+    <Container>
+      <Map defaultCenter={defaultCenter} zoom={11} pins={pins} />
+
+      <Navigation />
+    </Container>
   )
 }
 
