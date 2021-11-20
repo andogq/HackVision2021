@@ -61,31 +61,6 @@ export const Image = styled.img`
   border-radius: .4em;
 `
 
-export const Tags = styled.div`
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-top: .5em;
-  gap: .3em;
-  justify-content: flex-end;
-
-  button {
-    border-radius: 10em;
-    background: ${props => props.theme.secondary};
-    border: 0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: inherit;
-    padding: .2em .7em;
-    border: 2px solid currentColor;
-    font: inherit;
-    font-size: .8em;
-    font-weight: bold;
-  }
-`
-
 export const Challenge = styled.div`
   background: ${props => props.theme.primaryLight};
   border-radius: .4em;
