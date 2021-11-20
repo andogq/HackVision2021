@@ -26,7 +26,6 @@ if (window.navigator.geolocation) {
 
 const getDirections = (site) => {
   let currentLocation = `${defaultCenter.lat}+${defaultCenter.lng}+`
-  // TODO get geo location
   let destination = `${site.name}+${site.address}`
   destination = destination.replace(/\s/g, '+')
   window.open(
@@ -81,7 +80,7 @@ const MapView = () => {
         <PinDetails>
           <h1>{activePin.name}</h1>
           <span>{activePin.address}</span>
-          <span>Accepts:</span>
+          <p>Accepts:</p>
           <ul>
             {activePin.accepts.map((waste) => (
               <li>{waste}</li>
