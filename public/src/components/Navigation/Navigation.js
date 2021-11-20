@@ -23,7 +23,7 @@ const Item = ({
 
   return (
     <Link to={to} title={label}>
-      <StyledItem data-primary={primary} data-active={match}>
+      <StyledItem data-primary={primary} data-active={!!match}>
         <div>{icon}</div>
         <span>{label}</span>
       </StyledItem>

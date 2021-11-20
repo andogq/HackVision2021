@@ -4,6 +4,7 @@ import { ThemeProvider, Global, css } from '@emotion/react'
 import Home from './Home/Home'
 import Login from './Login/Login'
 import Signup from './Signup/Signup'
+import Feed from './Feed/Feed'
 
 const globalStyles = css`
   body {
@@ -20,7 +21,7 @@ const globalStyles = css`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 5px 0 80px;
+    padding: 0 0 100px;
     box-sizing: border-box;
   }
   a {
@@ -44,6 +45,8 @@ const Pages = () => (
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+
+      <Route path="/feed" element={<Feed />} />
     </Routes>
   </ThemeProvider>
 )
