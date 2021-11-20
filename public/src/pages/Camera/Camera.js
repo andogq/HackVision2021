@@ -7,12 +7,6 @@ import { Navigation } from 'components'
 
 import { Container } from './cameraStyle'
 
-const MODES = {
-  capture: 0,
-  preview: 1,
-  sending: 2,
-}
-
 const functions = getFunctions(app)
 
 // TODO: Remove this
@@ -24,7 +18,7 @@ const Camera = () => {
   const videoElement = useRef(null)
   const imageElement = useRef(null)
   const [stream, setStream] = useState(null)
-  const [mode, setMode] = useState(MODES.capture)
+  const [isCapturing, setIsCapturing] = useState(true)
   
   useEffect(() => {
     let new_stream = undefined
@@ -61,7 +55,7 @@ const Camera = () => {
     ctx.drawImage(videoElement.current, 0, 0)
 
     // Show preview
-    setMode(MODES.preview)
+    setIsCapturing(false)
 
     // Export it as blob
     canvas.toBlob((blob) => {
@@ -91,13 +85,11 @@ const Camera = () => {
   
   return (
     <Container>
-      {mode === MODES.capture && (
-        <>
-          <video ref={videoElement} />
-        </>
+      {isCapturing ? (
+        <video ref={videoElement} />
+      ) : (
+        <img ref={imageElement} alt="What you captured" />
       )}
-
-      {mode === MODES.preview && <img ref={imageElement} alt="What you captured" />}
       
       <Navigation onCameraClick={capture} />
     </Container>
