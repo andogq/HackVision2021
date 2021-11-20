@@ -8,21 +8,23 @@ import {
   Tags,
   Challenge,
 } from './postStyle'
+import { Tag, TagContainer } from 'components'
 
-const Post = ({
-  author,
-  details,
-}) => {
+const Post = ({ author, details }) => {
   return (
     <Wrapper>
       <Link to={`/profile/${author.id}`}>
         <UserDetails>
           <img src={author.image_url} alt={author.name} />
           <span>{author.name}</span>
-          <button type="button" title="Save" onClick={e => {
-            e.preventDefault()
-            console.log('bookmark')
-          }}>
+          <button
+            type="button"
+            title="Save"
+            onClick={(e) => {
+              e.preventDefault()
+              console.log('bookmark')
+            }}
+          >
             <Bookmark />
           </button>
         </UserDetails>
@@ -43,17 +45,11 @@ const Post = ({
       )}
 
       {details.tags?.length > 0 && (
-        <Tags>
-          {details.tags.map(tag => (
-            <button
-              type="button"
-              onClick={() => console.log('tag clicked', tag)}
-              key={tag}
-            >
-              {tag}
-            </button>
+        <TagContainer>
+          {details.tags.map((tag) => (
+            <Tag onClick={() => console.log('tag clicked', tag)} key={tag} tag={tag} />
           ))}
-        </Tags>
+        </TagContainer>
       )}
     </Wrapper>
   )

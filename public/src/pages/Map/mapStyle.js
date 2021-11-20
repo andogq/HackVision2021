@@ -24,3 +24,7 @@ export const PinDetails = styled.div`
     margin-bottom: 0.3em;
   }
 `
+
+export const AcceptsContainer = styled.div`
+  margin: 0.5em 0;
+`
