@@ -10,29 +10,9 @@ let defaultCenter = {
   lng: 151.18408587486766,
 }
 
-const successfulLocate = (position) => {
-  const { latitude, longitude } = position.coords
-  defaultCenter = { lat: latitude, lng: longitude }
-  console.log('defaultCenter', defaultCenter)
-  // TODO this is working but not updating correctly
-}
 
-if (window.navigator.geolocation) {
-  window.navigator.geolocation.getCurrentPosition(
-    successfulLocate,
-    console.error
-  )
-}
 
-const getDirections = (site) => {
-  let currentLocation = `${defaultCenter.lat}+${defaultCenter.lng}+`
-  let destination = `${site.name}+${site.address}`
-  destination = destination.replace(/\s/g, '+')
-  window.open(
-    `https://www.google.com.au/maps/dir/${currentLocation}/${destination}`,
-    '_blank'
-  )
-}
+
 
 const sites = [
   {
@@ -64,6 +44,17 @@ const sites = [
 
 const MapView = () => {
   const [activePin, setActivePin] = useState()
+  const [location, setLocation] = useState(defaultCenter)
+
+  const getDirections = (site) => {
+    let currentLocation = `${location.lat}+${location.lng}`
+    let destination = `${site.name}+${site.address}`
+    destination = destination.replace(/\s/g, '+')
+    window.open(
+      `https://www.google.com.au/maps/dir/${currentLocation}/${destination}`,
+      '_blank'
+    )
+  }
 
   return (
     <Container>
@@ -74,6 +65,7 @@ const MapView = () => {
         activePin={activePin}
         onClick={() => setActivePin(null)}
         onPinClick={(pin) => setActivePin(pin)}
+        locationCallback={(location) => setLocation(location)}
       />
 
       {activePin && (
