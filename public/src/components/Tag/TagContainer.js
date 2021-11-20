@@ -1,7 +1,7 @@
 import { TagWrapper } from './tagContainerStyle'
 
-const TagContainer = ({ children, justify }) => (
-  <TagWrapper justify={justify || 'flex-end'}>{children}</TagWrapper>
+const TagContainer = ({ children, justify = 'flex-end' }) => (
+  <TagWrapper justify={justify}>{children}</TagWrapper>
 )
 
 export default TagContainer
