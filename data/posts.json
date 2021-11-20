@@ -45,9 +45,9 @@
       "id": 0,
       "type": "challenge",
       "image_url": "res/posts/light.jpg",
-      "tags": ["cans", "recycle", "challenge"],
-      "saved": true
-    }
+      "tags": ["cans", "recycle", "challenge"]
+    },
+    "saved": true
   },
   {
     "author": {
@@ -92,9 +92,9 @@
     },
     "details": {
       "id": 0,
-      "image_url": "res/posts/gumboots.jpg",
-      "saved": true
-    }
+      "image_url": "res/posts/gumboots.jpg"
+    },
+    "saved": true
   },
   {
     "author": {
@@ -104,8 +104,8 @@
     },
     "details": {
       "id": 0,
-      "image_url": "res/posts/eWaste.jpg",
-      "saved": true
-    }
+      "image_url": "res/posts/eWaste.jpg"
+    },
+    "saved": true
   }
 ]
