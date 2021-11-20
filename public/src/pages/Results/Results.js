@@ -143,7 +143,7 @@ const Results = () => {
 
       {validTags.length > 0 ? (
         <>
-          <p>The following materials were detecting in your image. If they don't match what you were expecting, take a <Link to="/camera">new photo</Link>.</p>
+          <p>The following materials were detected in your image. If they don't match what you were expecting, take a <Link to="/camera">new photo</Link>.</p>
           {validTags.map(tag => (
             <div key={tag.name}>
               <h2>{tag.name}</h2>
