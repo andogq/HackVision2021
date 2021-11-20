@@ -44,21 +44,26 @@ const Results = () => {
     return (
         <div>
             {
-                valid_tags.map(tag => (
-                    <div key={tag.name}>
-                        <h2>{ tag.name }</h2>
-                        {
-                            tag.sites.map(site => (
-                                <p
-                                    key={site.name}
-                                    onClick={() => navigate("/map", { state: site })}
-                                >
-                                    {site.name}
-                                </p>
-                            ))
-                        }
-                    </div>
-                ))
+                valid_tags.length > 0 ?
+                    valid_tags.map(tag => (
+                        <div key={tag.name}>
+                            <h2>{ tag.name }</h2>
+                            {
+                                tag.sites.map(site => (
+                                    <p
+                                        key={site.name}
+                                        onClick={() => navigate("/map", { state: site })}
+                                    >
+                                        {site.name}
+                                    </p>
+                                ))
+                            }
+                        </div>
+                    )) :
+                    <>
+                        <h3>No sites were found that accept the following detected materials:</h3>
+                        { tags.map(tag => <p key={tag}>{tag}</p>) }
+                    </>
             }
         </div>
     );
