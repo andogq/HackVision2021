@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react'
 import { Map, Navigation, Button, Tag, TagContainer } from 'components'
 import { collection, getDocs, getFirestore } from 'firebase/firestore'
 import app from 'fire'
+import { useLocation, useNavigate } from "react-router-dom"
 
-import { AcceptsContainer, Container, PinDetails } from './mapStyle'
+import { AcceptsContainer, Container, PinDetails, Return } from './mapStyle'
 
 let defaultCenter = {
   lat: -37.80811940260482, // RMIT Building 80
@@ -24,6 +25,8 @@ const MapView = () => {
   const [activePin, setActivePin] = useState()
   const [location, setLocation] = useState(defaultCenter)
   const [sites, setSites] = useState([])
+  const nav_location = useLocation()
+  const navigate = useNavigate()
 
   const getSites = async () => {
     let sites = []
@@ -36,7 +39,10 @@ const MapView = () => {
 
   useEffect(() => {
     getSites()
-  }, [])
+    if (nav_location.state) {
+      setActivePin(nav_location.state)
+    }
+  }, [nav_location.state])
 
   const getDirections = (site) => {
     let currentLocation = `${location.lat}+${location.lng}`
@@ -97,6 +103,8 @@ const MapView = () => {
           <Button onClick={() => getDirections(activePin)}>Directions</Button>
         </PinDetails>
       )}
+
+      {nav_location.state && <Return><Button onClick={() => navigate(-1)}>← Return to results</Button></Return>}
 
       <Navigation />
     </Container>

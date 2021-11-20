@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getFunctions, httpsCallable, connectFunctionsEmulator } from 'firebase/functions'
+import { getFunctions, httpsCallable, /* connectFunctionsEmulator */ } from 'firebase/functions'
 import app from 'fire'
 
 import { Navigation } from 'components'
@@ -27,7 +27,9 @@ const Camera = () => {
 
     const startVideo = async () => {
       // Request the camera from the user
-      new_stream = await navigator.mediaDevices.getUserMedia({ video: true })
+      new_stream = await navigator.mediaDevices.getUserMedia({ video: {
+        facingMode: 'environment'
+      }})
 
       // Save the stream
       setStream(new_stream)
@@ -79,7 +81,7 @@ const Camera = () => {
         // Upload the image
         upload_image({ image: url.split(",", 2)[1] }).then(({ data }) => {
           navigate("/results", {
-            tags: [ ...data.map(({ description }) => description) ]
+              state: [ ...data.map(({ description }) => description) ]
           })
         })
       })
@@ -90,7 +92,7 @@ const Camera = () => {
   }
   
   return (
-    <Container>
+    <Container data-loading={!isCapturing}>
       {isCapturing ? (
         <video ref={videoElement} />
       ) : (

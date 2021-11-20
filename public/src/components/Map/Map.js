@@ -5,7 +5,7 @@ import { MapContainer } from './mapStyle'
 import GoogleMapReact from 'google-map-react'
 // https://www.npmjs.com/package/google-map-react
 
-const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
+const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY || 'AIzaSyCaIt2gBRhlYM44hyKfWKPalrfOaReV484'
 
 const Map = ({
   defaultCenter,

@@ -28,3 +28,9 @@ export const PinDetails = styled.div`
 export const AcceptsContainer = styled.div`
   margin: 0.5em 0;
 `
+
+export const Return = styled.div`
+  position: fixed;
+  top: 2em;
+  left: 2em;
+`

@@ -5,11 +5,10 @@ import {
   UserDetails,
   Title,
   Image,
-  Tags,
 } from './postStyle'
 import { Tag, TagContainer, Challenge } from 'components'
 
-const Post = ({ author, details }) => {
+const Post = ({ author, details, saved }) => {
   return (
     <Wrapper>
       <Link to={`/profile/${author.id}`}>
@@ -23,7 +22,9 @@ const Post = ({ author, details }) => {
               e.preventDefault()
               console.log('bookmark')
             }}
+            data-saved={saved}
           >
+            {saved && 'Saved'}
             <Bookmark />
           </button>
         </UserDetails>

@@ -4,6 +4,7 @@ export const Container = styled.main`
   width: 420px;
   max-width: 100%;
   padding-bottom: 40px;
+  min-height: calc(100vh - 70px);
 `
 
 export const ActionBar = styled.div`
