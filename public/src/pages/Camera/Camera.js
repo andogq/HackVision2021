@@ -21,48 +21,54 @@ connectFunctionsEmulator(functions, "localhost", 5001)
 const upload_image = httpsCallable(functions, "upload_image")
 
 const Camera = () => {
-  const video_element = useRef(null)
-  const image_element = useRef(null)
-  const [ stream, set_stream ] = useState(null)
-
-  const [ mode, set_mode ] = useState(MODES.capture)
-  
-  const canvas = document.createElement("canvas")
-  const ctx = canvas.getContext("2d")
+  const videoElement = useRef(null)
+  const imageElement = useRef(null)
+  const [stream, setStream] = useState(null)
+  const [mode, setMode] = useState(MODES.capture)
   
   useEffect(() => {
+    let new_stream = undefined
+
     const startVideo = async () => {
       // Request the camera from the user
-      let new_stream = await navigator.mediaDevices.getUserMedia({ video: true })
+      new_stream = await navigator.mediaDevices.getUserMedia({ video: true })
 
       // Save the stream
-      set_stream(new_stream)
+      setStream(new_stream)
 
       // Render it in the video element and play it
-      video_element.current.srcObject = new_stream
-      video_element.current.play()
+      videoElement.current.srcObject = new_stream
+      videoElement.current.play()
     }
 
     startVideo()
+
+    return () => {
+      // Stop video capture
+      for (let track of new_stream.getTracks()) track.stop()
+    }
   }, [])
 
   const capture = () => {
+    const canvas = document.createElement("canvas")
+    const ctx = canvas.getContext("2d")
+
     // Ensure canvas size matches video stream
-    canvas.height = video_element.current.videoHeight
-    canvas.width = video_element.current.videoWidth
+    canvas.height = videoElement.current.videoHeight
+    canvas.width = videoElement.current.videoWidth
 
     // Draw the video frame
-    ctx.drawImage(video_element.current, 0, 0)
+    ctx.drawImage(videoElement.current, 0, 0)
 
     // Show preview
-    set_mode(MODES.preview)
+    setMode(MODES.preview)
 
     // Export it as blob
     canvas.toBlob((blob) => {
       let url = URL.createObjectURL(blob)
 
-      image_element.current.addEventListener("load", () => URL.revokeObjectURL(url), { once: true })
-      image_element.current.src = url
+      imageElement.current.addEventListener("load", () => URL.revokeObjectURL(url), { once: true })
+      imageElement.current.src = url
 
       // Read the blob and output as Data URL
       let reader = new FileReader()
@@ -71,8 +77,8 @@ const Camera = () => {
         let url = reader.result
 
         // Show the image to the user
-        image_element.current.addEventListener("load", () => URL.revokeObjectURL(url), { once: true })
-        image_element.current.src = url
+        imageElement.current.addEventListener("load", () => URL.revokeObjectURL(url), { once: true })
+        imageElement.current.src = url
 
         // Upload the image
         upload_image({ image: url.split(",", 2)[1] }).then(console.log)
@@ -87,11 +93,11 @@ const Camera = () => {
     <Container>
       {mode === MODES.capture && (
         <>
-          <video ref={video_element} />
+          <video ref={videoElement} />
         </>
       )}
 
-      {mode === MODES.preview && <img ref={image_element} alt="What you captured" />}
+      {mode === MODES.preview && <img ref={imageElement} alt="What you captured" />}
       
       <Navigation onCameraClick={capture} />
     </Container>
