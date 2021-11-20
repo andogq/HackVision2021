@@ -53,7 +53,7 @@ const Signup = () => {
     }
 
     getAuth(app).onAuthStateChanged(checkLogin)
-  }, [profile])
+  }, [profile, navigate])
 
   const onSubmit = async values => {
     setIsLoading(true)
@@ -101,7 +101,7 @@ const Signup = () => {
           validate: value => value === watchPassword || 'Passwords must match',
         })}
         type="password"
-        label="Password"
+        label="Password (again)"
         required
       />
 

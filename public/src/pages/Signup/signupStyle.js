@@ -12,7 +12,7 @@ export const Title = styled.h1`
 `
 
 export const Form = styled.form`
-  width: 300px;
+  width: 420px;
   max-width: 100%;
 `
 
