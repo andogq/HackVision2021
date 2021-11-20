@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 export const Container = styled.main`
   width: 420px;
   max-width: 100%;
+  padding-bottom: 40px;
 `
 
 export const SearchWrapper = styled.form`
@@ -12,7 +13,7 @@ export const SearchWrapper = styled.form`
   position: sticky;
   top: 0;
   background: ${props => props.theme.background};
-  padding: .5em 0;
+  padding: .5em;
 
   input {
     flex: 1;

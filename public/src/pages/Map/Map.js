@@ -1,5 +1,7 @@
-import { Map, SiteCard } from 'components'
-import { SiteContainer } from './mapStyle'
+import { useState } from 'react'
+import { Map, Navigation } from 'components'
+
+import { Container, PinDetails } from './mapStyle'
 
 const defaultCenter = {
   name: 'RMIT Building 80',
@@ -14,6 +16,7 @@ const sites = [
     lat: -37.715784512691286,
     lng: 144.98359122149628,
     accepts: ['eWaste', 'Batteries', 'Cardboard', 'Plastic', 'Scrap Metal'],
+    type: 2,
   },
   {
     name: 'Moonee Valley Transfer Station',
@@ -21,21 +24,42 @@ const sites = [
     lat: -37.75813999854208,
     lng: 144.90188040581572,
     phone: '03 8325 1730',
-    type: 'Transfer Station',
+    accepts: ['eWaste', 'Batteries', 'Cardboard', 'Plastic', 'Scrap Metal'],
+    type: 0,
+  },
+  {
+    name: 'Yarra Recycling Centre',
+    address: '168 Roseneath St, Clifton Hill VIC 3068',
+    lat: -37.793861,
+    lng: 145.000839,
+    type: 2,
     accepts: ['eWaste', 'Batteries', 'Cardboard', 'Plastic', 'Scrap Metal'],
   },
 ]
 
 const MapView = () => {
+  const [activePin, setActivePin] = useState()
+
   return (
-    <div>
-      <Map defaultCenter={defaultCenter} zoom={14} pins={sites} />
-      <SiteContainer>
-        {sites.map((site) => (
-          <SiteCard site={site} />
-        ))}
-      </SiteContainer>
-    </div>
+    <Container>
+      <Map
+        defaultCenter={defaultCenter}
+        zoom={11}
+        pins={sites}
+        activePin={activePin}
+        onClick={() => setActivePin(null)}
+        onPinClick={(pin) => setActivePin(pin)}
+      />
+
+      {activePin && (
+        <PinDetails>
+          <h1>{activePin.name}</h1>
+          <span>{activePin.address}</span>
+        </PinDetails>
+      )}
+
+      <Navigation />
+    </Container>
   )
 }
 
