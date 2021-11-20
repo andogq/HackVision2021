@@ -71,7 +71,7 @@ const Feed = () => {
         image_url: test,
         type: 'challenge',
         tags: ['test', 'recycle']
-      }} />
+      }} saved />
 
       <Navigation />
     </Container>
