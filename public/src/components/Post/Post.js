@@ -47,7 +47,7 @@ const Post = ({ author, details }) => {
       {details.tags?.length > 0 && (
         <TagContainer>
           {details.tags.map((tag) => (
-            <Tag onClick={() => console.log('tag clicked', tag)} tag={tag} />
+            <Tag onClick={() => console.log('tag clicked', tag)} key={tag} tag={tag} />
           ))}
         </TagContainer>
       )}

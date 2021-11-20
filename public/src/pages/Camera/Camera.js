@@ -1,101 +1,105 @@
-import {
-    Navigation
-} from "components";
-import {
-    useEffect,
-    useState,
-    useRef
-} from "react";
-import { getFunctions, httpsCallable, connectFunctionsEmulator } from "firebase/functions";
-import app from "fire";
+import { useEffect, useState, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { getFunctions, httpsCallable, connectFunctionsEmulator } from 'firebase/functions'
+import app from 'fire'
 
-const MODES = {
-    capture: 0,
-    preview: 1,
-    sending: 2
-}
+import { Navigation } from 'components'
 
-const functions = getFunctions(app);
+import { Container } from './cameraStyle'
+
+const functions = getFunctions(app)
 
 // TODO: Remove this
-connectFunctionsEmulator(functions, "localhost", 5001);
+//connectFunctionsEmulator(functions, "localhost", 5001)
 
-const upload_image = httpsCallable(functions, "upload_image");
+const upload_image = httpsCallable(functions, "upload_image")
 
 const Camera = () => {
-    const video_element = useRef(null);
-    const image_element = useRef(null);
-    const [ stream, set_stream ] = useState(null);
+  const videoElement = useRef(null)
+  const imageElement = useRef(null)
+  const [stream, setStream] = useState(null)
+  const [isCapturing, setIsCapturing] = useState(true)
 
-    const [ mode, set_mode ] = useState(MODES.capture);
-    
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-    
-    useEffect(async () => {
-        // Request the camera from the user
-        let new_stream = await navigator.mediaDevices.getUserMedia({ video: true });
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    let new_stream = undefined
 
-        // Save the stream
-        set_stream(new_stream);
+    const startVideo = async () => {
+      // Request the camera from the user
+      new_stream = await navigator.mediaDevices.getUserMedia({ video: true })
 
-        // Render it in the video element and play it
-        video_element.current.srcObject = new_stream;
-        video_element.current.play();
-    }, []);
+      // Save the stream
+      setStream(new_stream)
 
-    function capture() {
-        // Ensure canvas size matches video stream
-        canvas.height = video_element.current.videoHeight;
-        canvas.width = video_element.current.videoWidth;
-
-        // Draw the video frame
-        ctx.drawImage(video_element.current, 0, 0);
-
-        // Show preview
-        set_mode(MODES.preview);
-
-        // Export it as blob
-        canvas.toBlob((blob) => {
-            let url = URL.createObjectURL(blob);
-
-            image_element.current.addEventListener("load", () => URL.revokeObjectURL(url), { once: true });
-            image_element.current.src = url;
-
-            // REad the blob and output as Data URL
-            let reader = new FileReader();
-            reader.readAsDataURL(blob);
-            reader.addEventListener("load", () => {
-                let url = reader.result;
-
-                // Show the image to the user
-                image_element.current.addEventListener("load", () => URL.revokeObjectURL(url), { once: true });
-                image_element.current.src = url;
-
-                // Upload the image
-                upload_image({ image: url.split(",", 2)[1] }).then(console.log);
-            });
-        }, "image/jpeg");
-
-        // Stop video capture
-        for (let track of stream.getTracks()) track.stop();
+      // Render it in the video element and play it
+      videoElement.current.srcObject = new_stream
+      videoElement.current.play()
     }
-    
-    return (
-        <div>
-            <h1>Camera</h1>
-            { mode === MODES.capture &&
-              <>
-                  <video ref={video_element} />
-                  <button onClick={capture}>Capture</button>
-              </>
-            }
 
-            { mode === MODES.preview && <img ref={image_element} /> }
-            
-            <Navigation />
-        </div>
-    )
+    startVideo()
+
+    return () => {
+      // Stop video capture
+      for (let track of new_stream.getTracks()) track.stop()
+    }
+  }, [])
+
+  const capture = () => {
+    const canvas = document.createElement("canvas")
+    const ctx = canvas.getContext("2d")
+
+    // Ensure canvas size matches video stream
+    canvas.height = videoElement.current.videoHeight
+    canvas.width = videoElement.current.videoWidth
+
+    // Draw the video frame
+    ctx.drawImage(videoElement.current, 0, 0)
+
+    // Show preview
+    setIsCapturing(false)
+
+    // Export it as blob
+    canvas.toBlob((blob) => {
+      let url = URL.createObjectURL(blob)
+
+      imageElement.current.addEventListener("load", () => URL.revokeObjectURL(url), { once: true })
+      imageElement.current.src = url
+
+      // Read the blob and output as Data URL
+      let reader = new FileReader()
+      reader.readAsDataURL(blob)
+      reader.addEventListener("load", () => {
+        let url = reader.result
+
+        // Show the image to the user
+        imageElement.current.addEventListener("load", () => URL.revokeObjectURL(url), { once: true })
+        imageElement.current.src = url
+
+        // Upload the image
+        upload_image({ image: url.split(",", 2)[1] }).then(({ data }) => {
+          navigate("/results", {
+            tags: [ ...data.map(({ description }) => description) ]
+          })
+        })
+      })
+    }, "image/jpeg")
+
+    // Stop video capture
+    for (let track of stream.getTracks()) track.stop()
+  }
+  
+  return (
+    <Container>
+      {isCapturing ? (
+        <video ref={videoElement} />
+      ) : (
+        <img ref={imageElement} alt="What you captured" />
+      )}
+      
+      <Navigation onCameraClick={capture} />
+    </Container>
+  )
 }
 
-export default Camera;
+export default Camera

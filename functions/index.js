@@ -1,23 +1,19 @@
 const functions = require("firebase-functions");
+const https = require("https");
+const vision = require("@google-cloud/vision");
 
-exports.upload_image = functions.https.onCall((data, context) => {
+exports.upload_image = functions.https.onCall(async (data, context) => {
     let { image } = data;
 
     if (image) {
-        return {
-            size: image.length
-        };
-    } else {
-        return {
-            error: true
-        }
-    }
-});
+        const buffer = Buffer.from(image, "base64");
+        
+        const client = new vision.ImageAnnotatorClient();
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+        const [ result ] = await client.labelDetection(buffer);
+        console.log(result);
+        const labels = result.labelAnnotations;
+
+        return labels;
+    } else return { error: true };
+});
