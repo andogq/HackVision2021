@@ -7,15 +7,15 @@ import Signup from './Signup/Signup'
 import Feed from './Feed/Feed'
 import Profile from './Profile/Profile'
 
-import Home from "./Home/Home"
-import Login from "./Login/Login"
-import Signup from "./Signup/Signup"
-import MapView from "./Map/Map"
+import Home from './Home/Home'
+import Login from './Login/Login'
+import Signup from './Signup/Signup'
+import MapView from './Map/Map'
 const globalStyles = css`
   body {
     margin: 0;
     font-family: 'IBM Plex Mono', monospace;
-    background: #FFFFFF;
+    background: #ffffff;
     color: #222222;
   }
   body,
@@ -36,15 +36,17 @@ const globalStyles = css`
 `
 
 const Pages = () => (
-  <ThemeProvider theme={{
-    background: '#FFFFFF',
-    text: '#222222',
-    primary: '#68751A',
-    primaryLight: '#AEC78F',
-    primaryBackground: '#F0FFF0',
-    secondary: '#FFE978',
-    error: '#D32F2F',
-  }}>
+  <ThemeProvider
+    theme={{
+      background: '#FFFFFF',
+      text: '#222222',
+      primary: '#68751A',
+      primaryLight: '#AEC78F',
+      primaryBackground: '#F0FFF0',
+      secondary: '#FFE978',
+      error: '#D32F2F',
+    }}
+  >
     <Global styles={globalStyles} />
 
     <Routes>
