@@ -27,7 +27,9 @@ const Camera = () => {
 
     const startVideo = async () => {
       // Request the camera from the user
-      new_stream = await navigator.mediaDevices.getUserMedia({ video: true })
+      new_stream = await navigator.mediaDevices.getUserMedia({ video: {
+        facingMode: 'environment'
+      }})
 
       // Save the stream
       setStream(new_stream)
