@@ -9,18 +9,18 @@ export const Container = styled.main`
 export const PinDetails = styled.div`
   position: absolute;
   bottom: 40px;
-  left: .5em;
-  right: .5em;
-  background: ${props => props.theme.background};
-  border-radius: .5em;
+  left: 0.5em;
+  right: 0.5em;
+  background: ${(props) => props.theme.background};
+  border-radius: 0.5em;
   box-sizing: border-box;
-  border: 2px solid ${props => props.theme.primary};
-  padding: .5em .7em;
+  border: 2px solid ${(props) => props.theme.primary};
+  padding: 0.5em 0.7em;
 
   h1 {
     margin: 0;
     font-size: 1.2em;
-    color: ${props => props.theme.primary};
-    margin-bottom: .3em;
+    color: ${(props) => props.theme.primary};
+    margin-bottom: 0.3em;
   }
 `
