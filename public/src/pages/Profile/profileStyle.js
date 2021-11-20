@@ -50,3 +50,91 @@ export const UserInfo = styled.div`
     margin: 0;
   }
 `
+
+export const Content = styled.div`
+  padding: 0 1em;
+`
+
+export const Recycled = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: .8em;
+    align-items: center;
+
+    img {
+      height: 6em;
+      width: 6em;
+      display: block;
+      border: 2px solid ${props => props.theme.primary};
+      border-radius: 10em;
+      overflow: hidden;
+      object-fit: cover;
+      background: ${props => props.theme.primaryBackground};
+    }
+    span {
+      display: block;
+      text-align: center;
+      font-weight: bold;
+    }
+  }
+`
+
+export const Badges = styled.div`
+  display: grid;
+  align-items: flex-start;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em 0;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: .8em;
+    align-items: center;
+
+    img {
+      height: 6em;
+      width: 6em;
+      display: block;
+      border: 2px solid ${props => props.theme.primary};
+      border-radius: 10em;
+      overflow: hidden;
+      object-fit: cover;
+      background: ${props => props.theme.primaryBackground};
+    }
+    span {
+      display: block;
+      text-align: center;
+      font-weight: bold;
+    }
+  }
+`
+
+export const Tabs = styled.div`
+  display: flex;
+  align-items: center;
+  padding-top: .5em;
+  background: ${props => props.theme.primaryBackground};
+
+  button {
+    margin: 0;
+    padding: .6em;
+    background: ${props => props.theme.primaryLight};
+    border: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    flex: 1;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+
+    &[data-active=true] {
+      background: ${props => props.theme.background};
+      font-weight: bold;
+    }
+  }
+`
