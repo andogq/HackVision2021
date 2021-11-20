@@ -50,6 +50,8 @@ const Feed = () => {
         <button type="button" title="Filter"><Filter /></button>
       </SearchWrapper>
 
+      {posts.map((post) => <Post author={post.author} details={post.details} saved={post.details.saved} />)}
+
       <Post author={{
         id: 0,
         name: 'John Deere',
