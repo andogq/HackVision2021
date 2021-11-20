@@ -5,6 +5,7 @@ import Home from './Home/Home'
 import Login from './Login/Login'
 import Signup from './Signup/Signup'
 import Feed from './Feed/Feed'
+import Saved from './Saved/Saved'
 import Profile from './Profile/Profile'
 import MapView from './Map/Map'
 import Camera from "./Camera/Camera";
@@ -56,8 +57,9 @@ const Pages = () => (
       <Route path="/feed" element={<Feed />} />
       <Route path="/map" element={<MapView />} />
       <Route path="/profile" element={<Profile />} />
-        <Route path="/camera" element={<Camera />} />
-        <Route path="/results" element={<Results />} />
+      <Route path="/saved" element={<Saved />} />
+      <Route path="/camera" element={<Camera />} />
+      <Route path="/results" element={<Results />} />
     </Routes>
   </ThemeProvider>
 )

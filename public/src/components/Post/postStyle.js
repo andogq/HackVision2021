@@ -34,8 +34,6 @@ export const UserDetails = styled.div`
     flex: 1;
   }
   button {
-    height: 2.6em;
-    width: 2.6em;
     border-radius: 10em;
     background: none;
     border: 0;
@@ -44,6 +42,14 @@ export const UserDetails = styled.div`
     align-items: center;
     justify-content: center;
     color: inherit;
+    padding: .5em 1em;
+    gap: .3em;
+    font: inherit;
+
+    &[data-saved=true] {
+      background: ${props => props.theme.primary};
+      color: ${props => props.theme.background};
+    }
   }
 `
 
