@@ -6,9 +6,8 @@ import {
   Title,
   Image,
   Tags,
-  Challenge,
 } from './postStyle'
-import { Tag, TagContainer } from 'components'
+import { Tag, TagContainer, Challenge } from 'components'
 
 const Post = ({ author, details }) => {
   return (
@@ -31,12 +30,7 @@ const Post = ({ author, details }) => {
       </Link>
 
       {details.type === 'challenge' ? (
-        <Link to={`/post/${details.id}`}>
-          <Challenge>
-            {details.image_url && <img src={details.image_url} alt="" />}
-            <span>{details.title}</span>
-          </Challenge>
-        </Link>
+        <Challenge image={details.image_url} name={details.title} to={`/post/${details.id}`} />
       ) : (
         <Link to={`/post/${details.id}`}>
           <Title>{details.title}</Title>
