@@ -1,5 +1,6 @@
 import styled from "@emotion/styled"
 
-export const Wrapper = styled.nav`
-  background-color: ${(props) => props.theme.primary};
+export const MapContainer = styled.div`
+  height: 400px;
+  width: 100%;
 `
