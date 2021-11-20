@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Map, Navigation, Button, Tag, TagContainer } from 'components'
+import { useLocation } from "react-router-dom";
 
 import { AcceptsContainer, Container, PinDetails } from './mapStyle'
 
@@ -40,7 +41,12 @@ const sites = [
 
 const MapView = () => {
   const [activePin, setActivePin] = useState()
-  const [location, setLocation] = useState(defaultCenter)
+    const [location, setLocation] = useState(defaultCenter)
+    const nav_location = useLocation();
+
+    useEffect(() => {
+        setActivePin(nav_location.state);
+    }, [ nav_location ]);
 
   const getDirections = (site) => {
     let currentLocation = `${location.lat}+${location.lng}`
