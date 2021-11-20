@@ -6,11 +6,8 @@ import Login from './Login/Login'
 import Signup from './Signup/Signup'
 import Feed from './Feed/Feed'
 import Profile from './Profile/Profile'
-
-import Home from './Home/Home'
-import Login from './Login/Login'
-import Signup from './Signup/Signup'
 import MapView from './Map/Map'
+
 const globalStyles = css`
   body {
     margin: 0;
