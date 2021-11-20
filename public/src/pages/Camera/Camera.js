@@ -79,7 +79,7 @@ const Camera = () => {
         // Upload the image
         upload_image({ image: url.split(",", 2)[1] }).then(({ data }) => {
           navigate("/results", {
-            tags: [ ...data.map(({ description }) => description) ]
+              state: [ ...data.map(({ description }) => description) ]
           })
         })
       })

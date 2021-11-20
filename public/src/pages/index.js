@@ -8,6 +8,7 @@ import Feed from './Feed/Feed'
 import Profile from './Profile/Profile'
 import MapView from './Map/Map'
 import Camera from "./Camera/Camera";
+import Results from "./Results/Results";
 
 const globalStyles = css`
   body {
@@ -55,7 +56,8 @@ const Pages = () => (
       <Route path="/feed" element={<Feed />} />
       <Route path="/map" element={<MapView />} />
       <Route path="/profile" element={<Profile />} />
-      <Route path="/camera" element={<Camera />} />
+        <Route path="/camera" element={<Camera />} />
+        <Route path="/results" element={<Results />} />
     </Routes>
   </ThemeProvider>
 )
