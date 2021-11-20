@@ -21,20 +21,32 @@ const Results = () => {
     }, []);
 
     useEffect(() => {
-        set_valid_tags(
-            tags.filter(tag => sites.includes(site => site.accepts.includes(tag)))
-        )
+        // Iterate through each tag
+        let materials = tags.filter(tag => {
+            // See if any siters include it
+            for (let site of sites) {
+                if (site.accepts.includes(tag)) return true;
+            }
+            
+            return false;
+        });
+
+        set_valid_tags(materials.map(material => ({
+            name: material,
+            sites: sites.filter(site => site.accepts.includes(material))
+        })));
     }, [ tags, sites ]);
-    
+
     return (
         <div>
             {
                 valid_tags.map(tag => (
                     <div>
-                        <h2>{ tag }</h2>
+                        <h2>{ tag.name }</h2>
                         {
-                            sites.filter(site => site.tags.includes(tag.toLowerCase()))
-                                .map(site => <p><a>{site.name}</a></p>)
+                            tag.sites.map(site => (
+                                <p><a>{site.name}</a></p>
+                            ))
                         }
                     </div>
                 ))
