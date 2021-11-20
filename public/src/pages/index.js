@@ -10,7 +10,7 @@ import Profile from './Profile/Profile'
 const globalStyles = css`
   body {
     margin: 0;
-    font-family: 'Fira Code', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     background: #FFFFFF;
     color: #222222;
   }

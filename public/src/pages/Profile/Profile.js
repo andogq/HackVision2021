@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { LogOut, Settings } from 'react-feather'
 import { useProfileStore } from 'stores'
@@ -43,7 +42,7 @@ const Profile = () => {
       </ActionBar>
 
       <UserInfo>
-        <img src={user?.image_url} alt={`Photo of ${user?.name}`} />
+        <img src={user?.image_url} alt={user?.name} />
         <h1>{user?.name}</h1>
       </UserInfo>
 
