@@ -4,11 +4,13 @@ import { ThemeProvider, Global, css } from '@emotion/react'
 import Home from './Home/Home'
 import Login from './Login/Login'
 import Signup from './Signup/Signup'
+import Feed from './Feed/Feed'
+import Profile from './Profile/Profile'
 
 const globalStyles = css`
   body {
     margin: 0;
-    font-family: 'Fira Code', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     background: #FFFFFF;
     color: #222222;
   }
@@ -20,7 +22,7 @@ const globalStyles = css`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 5px 0;
+    padding: 0 0 100px;
     box-sizing: border-box;
   }
   a {
@@ -34,6 +36,7 @@ const Pages = () => (
     text: '#222222',
     primary: '#68751A',
     primaryLight: '#AEC78F',
+    primaryBackground: '#F0FFF0',
     secondary: '#FFE978',
     error: '#D32F2F',
   }}>
@@ -43,6 +46,9 @@ const Pages = () => (
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+
+      <Route path="/feed" element={<Feed />} />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
   </ThemeProvider>
 )

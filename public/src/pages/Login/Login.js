@@ -49,7 +49,7 @@ const Login = () => {
     }
 
     getAuth(app).onAuthStateChanged(checkLogin)
-  }, [profile])
+  }, [profile, navigate])
 
   const onSubmit = async values => {
     setIsLoading(true)
