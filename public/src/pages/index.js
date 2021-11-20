@@ -5,6 +5,7 @@ import Home from './Home/Home'
 import Login from './Login/Login'
 import Signup from './Signup/Signup'
 import Feed from './Feed/Feed'
+import Profile from './Profile/Profile'
 
 const globalStyles = css`
   body {
@@ -47,6 +48,7 @@ const Pages = () => (
       <Route path="/signup" element={<Signup />} />
 
       <Route path="/feed" element={<Feed />} />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
   </ThemeProvider>
 )

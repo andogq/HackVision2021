@@ -51,7 +51,7 @@ const Navigation = () => (
     />
     <Item
       icon={<Star />}
-      to="/profile"
+      to="/egg"
       label="Other"
     />
     <Item
