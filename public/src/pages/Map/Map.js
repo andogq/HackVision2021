@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Map, Navigation, Button, Tag, TagContainer } from 'components'
 import { collection, getDocs, getFirestore } from 'firebase/firestore'
 import app from 'fire'
@@ -20,114 +20,23 @@ const siteTypes = [
 ]
 const db = getFirestore(app)
 
-async function getSites() {
-  const querySnapshot = await getDocs(collection(db, 'sites'))
-  querySnapshot.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
-    console.log(doc.id, ' => ', doc.data())
-  })
-}
-
-getSites()
-
-const sites = [
-  {
-    name: 'Darebin Resource Recovery Center',
-    address: 'Kurnai Avenue, Reservoir VIC 3073',
-    lat: -37.715784512691286,
-    lng: 144.98359122149628,
-    accepts: [
-      'Cans',
-      'Clothing',
-      'Batteries',
-      'eWaste',
-      'Glass',
-      'Paint',
-      'Cardboard',
-      'Scrap Metal',
-      'Mattresses',
-      'Whitegoods',
-    ],
-    type: 2,
-  },
-  {
-    name: 'Moonee Valley Transfer Station',
-    address: '188 Holmes Rd, Aberfeldie VIC 3040',
-    lat: -37.75813999854208,
-    lng: 144.90188040581572,
-    accepts: [
-      'Car Parts',
-      'Pallets',
-      'eWaste',
-      'Batteries',
-      'Cardboard',
-      'Plastic',
-      'Scrap Metal',
-    ],
-    type: 0,
-  },
-  {
-    name: 'Yarra Recycling Centre',
-    address: '168 Roseneath St, Clifton Hill VIC 3068',
-    lat: -37.793861,
-    lng: 145.000839,
-    type: 2,
-    accepts: [
-      'eWaste',
-      'Batteries',
-      'Cardboard',
-      'Plastic',
-      'Scrap Metal',
-      'Glass',
-    ],
-  },
-  {
-    name: 'Brooklyn Transfer Station',
-    address: '174 Old Geelong Rd, Brooklyn VIC 3012',
-    lat: -37.81844751923739,
-    lng: 144.82881649431795,
-    type: 0,
-    accepts: [
-      'Bricks',
-      'Batteries',
-      'Concrete',
-      'Gas Bottles',
-      'Sand',
-      'Soil',
-      'Tyres',
-      'Whitegoods',
-    ],
-  },
-  {
-    name: 'Citywide Transfer Station',
-    address: '437 Dynon Rd, West Melbourne VIC 3003',
-    lat: -37.802628368485024,
-    lng: 144.91380508928273,
-    type: 0,
-    accepts: [
-      'Aerosol Cans',
-      'Batteries',
-      'eWaste',
-      'Green Waste',
-      'Glass',
-      'Paper',
-      'Oil',
-      'Whitegoods',
-    ],
-  },
-  {
-    name: 'Visy Recycling',
-    address: '46-48 Dohertys Rd, Laverton VIC 3025',
-    lat: -37.82907954967732,
-    lng: 144.80586777579185,
-    type: 2,
-    accepts: ['Paper', 'Cardboard'],
-  },
-]
-
 const MapView = () => {
   const [activePin, setActivePin] = useState()
   const [location, setLocation] = useState(defaultCenter)
+  const [sites, setSites] = useState([])
+
+  const getSites = async () => {
+    let sites = []
+    const querySnapshot = await getDocs(collection(db, 'sites'))
+    querySnapshot.forEach((doc) => {
+      sites.push(doc.data())
+    })
+    setSites(sites)
+  }
+
+  useEffect(() => {
+    getSites()
+  }, [])
 
   const getDirections = (site) => {
     let currentLocation = `${location.lat}+${location.lng}`
@@ -167,7 +76,7 @@ const MapView = () => {
         <PinDetails>
           <h1>{activePin.name}</h1>
           <span>{activePin.address}</span>
-          <TagContainer  justify="flex-start">
+          <TagContainer justify="flex-start">
             <Tag tag={siteTypes[activePin.type]} />
           </TagContainer>
 
