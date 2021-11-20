@@ -1,18 +1,23 @@
-import styled from "@emotion/styled"
+import styled from '@emotion/styled'
 
-// TODO these need some love
 export const Container = styled.div`
-  color: ${(props) => props.theme.primary};
-  display: flex;
-  width: 10rem;
-  align-items: center;
+  padding: 6px;
+  transform: translate(-50%, -100%);
+  height: 24px;
+  width: 24px;
+  transition: transform .1s;
+  transform-origin: bottom center;
+
+  &[data-active=true] {
+    transform: translate(-50%, -100%) scale(1.2);
+  }
 `
 
-export const Text = styled.text`
-  color: ${(props) => props.theme.text};
-  background: ${(props) => props.theme.background};
-  padding: 1em;
-  border: 2px solid ${(props) => props.theme.primary};
-  border-radius: 0.3em;
-  font-size: 1em;
+export const MapPin = styled.div`
+  height: 100%;
+  width: 100%;
+  background: var(--pin-color, #000000);
+  background: radial-gradient(transparent 20%, var(--pin-color, #000000) 20%);
+  border-radius: 10em 10em 10em 0;
+  transform: rotate(-45deg);
 `

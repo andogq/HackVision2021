@@ -1,19 +1,18 @@
-import { MapPin } from "react-feather"
-import { Container, Text } from "./pinStyle"
+import { Container, MapPin } from './pinStyle'
 
-const Pin = ({ name, address }) => {
-  return (
-    <Container>
-      <MapPin size={48} />
-      <Text>{name}</Text>
-    </Container>
-  )
+const TYPES = {
+  0: '#E53935',
+  1: '#FF9800',
+  2: '#4CAF50',
+  3: '#757575',
 }
 
-const handleClick = (address) => {
-  // ! handleClick gets called everytime map moves
-  // TODO add google directions to location
-  console.log("address", address)
-}
+const Pin = ({ type, onClick, active }) => (
+  <Container onClick={onClick} data-active={active}>
+    <MapPin style={{
+      '--pin-color': TYPES[type],
+    }} />
+  </Container>
+)
 
 export default Pin

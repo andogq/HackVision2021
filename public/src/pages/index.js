@@ -24,7 +24,7 @@ const globalStyles = css`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0 0 100px;
+    padding: 0 0 70px;
     box-sizing: border-box;
   }
   a {
@@ -50,9 +50,9 @@ const Pages = () => (
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/map" element={<MapView />} />
 
       <Route path="/feed" element={<Feed />} />
+      <Route path="/map" element={<MapView />} />
       <Route path="/profile" element={<Profile />} />
     </Routes>
   </ThemeProvider>
