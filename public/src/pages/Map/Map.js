@@ -1,46 +1,42 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Map, Navigation, Button, Tag, TagContainer } from 'components'
+import { collection, getDocs, getFirestore } from 'firebase/firestore'
+import app from 'fire'
 
 import { AcceptsContainer, Container, PinDetails } from './mapStyle'
 
 let defaultCenter = {
-  // lat: -37.80811940260482, // RMIT
-  // lng: 144.96263556935406,
-  lat: -33.8888062036364, // Sydney
-  lng: 151.18408587486766,
+  lat: -37.80811940260482, // RMIT Building 80
+  lng: 144.96263556935406,
+  // lat: -33.8888062036364, // Sydney
+  // lng: 151.18408587486766,
 }
 
-const sites = [
-  {
-    name: 'Darebin Resource Recovery Center',
-    address: 'Kurnai Avenue, Reservoir VIC 3073',
-    lat: -37.715784512691286,
-    lng: 144.98359122149628,
-    accepts: ['eWaste', 'Batteries', 'Cardboard', 'Plastic', 'Scrap Metal'],
-    type: 2,
-  },
-  {
-    name: 'Moonee Valley Transfer Station',
-    address: '188 Holmes Rd, Aberfeldie VIC 3040',
-    lat: -37.75813999854208,
-    lng: 144.90188040581572,
-    phone: '03 8325 1730',
-    accepts: ['eWaste', 'Batteries', 'Cardboard', 'Plastic', 'Scrap Metal'],
-    type: 0,
-  },
-  {
-    name: 'Yarra Recycling Centre',
-    address: '168 Roseneath St, Clifton Hill VIC 3068',
-    lat: -37.793861,
-    lng: 145.000839,
-    type: 2,
-    accepts: ['eWaste', 'Batteries', 'Cardboard', 'Plastic', 'Scrap Metal'],
-  },
+const siteTypes = [
+  'Transfer Station',
+  'Resource Recovery',
+  'Recycling Plant',
+  'Other',
 ]
+const db = getFirestore(app)
 
 const MapView = () => {
   const [activePin, setActivePin] = useState()
   const [location, setLocation] = useState(defaultCenter)
+  const [sites, setSites] = useState([])
+
+  const getSites = async () => {
+    let sites = []
+    const querySnapshot = await getDocs(collection(db, 'sites'))
+    querySnapshot.forEach((doc) => {
+      sites.push(doc.data())
+    })
+    setSites(sites)
+  }
+
+  useEffect(() => {
+    getSites()
+  }, [])
 
   const getDirections = (site) => {
     let currentLocation = `${location.lat}+${location.lng}`
@@ -50,6 +46,18 @@ const MapView = () => {
       `https://www.google.com.au/maps/dir/${currentLocation}/${destination}`,
       '_blank'
     )
+  }
+
+  const sorter = (inputA, inputB) => {
+    let a = inputA.toLowerCase()
+    let b = inputB.toLowerCase()
+    if (a > b) {
+      return 1
+    } else if (a < b) {
+      return -1
+    } else if (a === b) {
+      return 0
+    }
   }
 
   return (
@@ -68,16 +76,22 @@ const MapView = () => {
         <PinDetails>
           <h1>{activePin.name}</h1>
           <span>{activePin.address}</span>
+          <TagContainer justify="flex-start">
+            <Tag tag={siteTypes[activePin.type]} />
+          </TagContainer>
+
           <AcceptsContainer>
             <span>Accepts:</span>
             <TagContainer justify="flex-start">
-              {activePin.accepts.map((waste, index) => (
-                <Tag
-                  key={index}
-                  tag={waste}
-                  onClick={() => console.log('tag clicked', waste)}
-                />
-              ))}
+              {activePin.accepts
+                .sort((a, b) => sorter(a, b))
+                .map((waste, index) => (
+                  <Tag
+                    key={index}
+                    tag={waste}
+                    onClick={() => console.log('tag clicked', waste)}
+                  />
+                ))}
             </TagContainer>
           </AcceptsContainer>
           <Button onClick={() => getDirections(activePin)}>Directions</Button>

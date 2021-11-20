@@ -4,7 +4,7 @@ export const Tag = styled.button`
   border-radius: 10em;
   background: ${(props) => props.theme.secondary};
   border: 0;
-  cursor: pointer;
+  cursor: ${(props) => (props.onClick ? 'pointer' : 'default')};
   display: flex;
   align-items: center;
   justify-content: center;
