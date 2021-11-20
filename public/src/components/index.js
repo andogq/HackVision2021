@@ -5,3 +5,5 @@ export { default as Message } from './Message/Message'
 
 export { default as TextField } from './TextField/TextField'
 export { default as Button } from './Button/Button'
+export { default as Tag } from './Tag/Tag'
+export { default as TagContainer } from './Tag/TagContainer'

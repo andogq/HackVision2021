@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { Map, Navigation, Button } from 'components'
+import { Map, Navigation, Button, Tag, TagContainer } from 'components'
 
-import { Container, PinDetails } from './mapStyle'
+import { AcceptsContainer, Container, PinDetails } from './mapStyle'
 
 let defaultCenter = {
   // lat: -37.80811940260482, // RMIT
@@ -9,10 +9,6 @@ let defaultCenter = {
   lat: -33.8888062036364, // Sydney
   lng: 151.18408587486766,
 }
-
-
-
-
 
 const sites = [
   {
@@ -72,12 +68,18 @@ const MapView = () => {
         <PinDetails>
           <h1>{activePin.name}</h1>
           <span>{activePin.address}</span>
-          <p>Accepts:</p>
-          <ul>
-            {activePin.accepts.map((waste) => (
-              <li>{waste}</li>
-            ))}
-          </ul>
+          <AcceptsContainer>
+            <span>Accepts:</span>
+            <TagContainer justify="flex-start">
+              {activePin.accepts.map((waste, index) => (
+                <Tag
+                  key={index}
+                  tag={waste}
+                  onClick={() => console.log('tag clicked', waste)}
+                />
+              ))}
+            </TagContainer>
+          </AcceptsContainer>
           <Button onClick={() => getDirections(activePin)}>Directions</Button>
         </PinDetails>
       )}
