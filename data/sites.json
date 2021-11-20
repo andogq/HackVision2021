@@ -16,7 +16,7 @@
       "Mattresses",
       "Whitegoods"
     ],
-    "type": 2
+    "type": 1
   },
   {
     "name": "Moonee Valley Transfer Station",
@@ -112,7 +112,7 @@
     "address": "Becks Rd, Drysdale VIC 3222",
     "lat": -38.17049417134534,
     "lng": 144.62749541998528,
-    "type": 2,
+    "type": 1,
     "accepts": [
       "Clothing",
       "Plastic",
@@ -127,7 +127,7 @@
     "address": "78 White St, South Melbourne VIC 3205",
     "lat": -37.82772366955296,
     "lng": 144.94361021230378,
-    "type": 2,
+    "type": 1,
     "accepts": [
       "Clothing",
       "Plastic",

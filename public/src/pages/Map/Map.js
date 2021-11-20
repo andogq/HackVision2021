@@ -14,7 +14,7 @@ let defaultCenter = {
 
 const siteTypes = [
   'Transfer Station',
-  'Drop Off Point',
+  'Resource Recovery',
   'Recycling Plant',
   'Other',
 ]
