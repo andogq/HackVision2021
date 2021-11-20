@@ -1,0 +1,111 @@
+[
+  {
+    "author": {
+      "id": 0,
+      "name": "John Smith",
+      "image_url": "res/avatars/john.jpg"
+    },
+    "details": {
+      "id": 0,
+      "image_url": "res/posts/batteries.jpg"
+    }
+  },
+  {
+    "author": {
+      "id": 0,
+      "name": "Kim Hampton",
+      "image_url": "res/posts/john.jpg"
+    },
+    "details": {
+      "id": 0,
+      "image_url": "res/posts/bottles.jpg",
+      "tags": ["glass", "recycle", "challenge"]
+    }
+  },
+  {
+    "author": {
+      "id": 0,
+      "name": "Eleanor Strong",
+      "image_url": "res/posts/john.jpg"
+    },
+    "details": {
+      "id": 0,
+      "type": "challenge",
+      "image_url": "res/posts/cans.jpg",
+      "tags": ["cans", "recycle", "challenge"]
+    }
+  },
+  {
+    "author": {
+      "id": 0,
+      "name": "Marvin Jones",
+      "image_url": "res/posts/john.jpg"
+    },
+    "details": {
+      "id": 0,
+      "type": "challenge",
+      "image_url": "res/posts/light.jpg",
+      "tags": ["cans", "recycle", "challenge"]
+    },
+    "saved": true
+  },
+  {
+    "author": {
+      "id": 0,
+      "name": "Anna Scott",
+      "image_url": "res/posts/john.jpg"
+    },
+    "details": {
+      "id": 0,
+      "image_url": "res/posts/cardboard.jpg",
+      "tags": ["cardboard", "recycle", "challenge", "lots", "of", "tags", "🤠"]
+    }
+  },
+  {
+    "author": {
+      "id": 0,
+      "name": "Joseph Bates",
+      "image_url": "res/posts/john.jpg"
+    },
+    "details": {
+      "id": 0,
+      "tags": ["glass", "recycle", "challenge"]
+    }
+  },
+  {
+    "author": {
+      "id": 0,
+      "name": "Becky Powers",
+      "image_url": "res/posts/john.jpg"
+    },
+    "details": {
+      "id": 0,
+      "type": "challenge",
+      "tags": ["glass", "recycle", "challenge"]
+    }
+  },
+  {
+    "author": {
+      "id": 0,
+      "name": "Buddy Payne",
+      "image_url": "res/posts/john.jpg"
+    },
+    "details": {
+      "id": 0,
+      "image_url": "res/posts/gumboots.jpg"
+    },
+    "saved": true
+  },
+  {
+    "author": {
+      "id": 0,
+      "name": "Peter Parker",
+      "image_url": "res/posts/john.jpg"
+    },
+    "details": {
+      "id": 0,
+      "image_url": "res/posts/eWaste.jpg"
+    },
+    "saved": true
+  }
+]
