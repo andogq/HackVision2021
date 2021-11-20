@@ -3,12 +3,38 @@ import { Map, Navigation, Button } from 'components'
 
 import { Container, PinDetails } from './mapStyle'
 
-const defaultCenter = {
-  name: 'RMIT Building 80',
-  address: '445 Swanston Street Melbourne',
-  lat: -37.80811940260482,
-  lng: 144.96263556935406,
+let defaultCenter = {
+  // lat: -37.80811940260482, // RMIT
+  // lng: 144.96263556935406,
+  lat: -33.8888062036364, // Sydney
+  lng: 151.18408587486766,
 }
+
+const successfulLocate = (position) => {
+  const { latitude, longitude } = position.coords
+  defaultCenter = { lat: latitude, lng: longitude }
+  console.log('defaultCenter', defaultCenter)
+  // TODO this is working but not updating correctly
+}
+
+if (window.navigator.geolocation) {
+  window.navigator.geolocation.getCurrentPosition(
+    successfulLocate,
+    console.error
+  )
+}
+
+const getDirections = (site) => {
+  let currentLocation = `${defaultCenter.lat}+${defaultCenter.lng}+`
+  // TODO get geo location
+  let destination = `${site.name}+${site.address}`
+  destination = destination.replace(/\s/g, '+')
+  window.open(
+    `https://www.google.com.au/maps/dir/${currentLocation}/${destination}`,
+    '_blank'
+  )
+}
+
 const sites = [
   {
     name: 'Darebin Resource Recovery Center',
@@ -67,18 +93,6 @@ const MapView = () => {
 
       <Navigation />
     </Container>
-  )
-}
-
-const getDirections = (site) => {
-  // TODO get geo location
-  const currentLocation =
-    'RMIT+University+-+Building+80,+Swanston+Street,+Melbourne+VIC'
-  let destination = `${site.name}+${site.address}`
-  destination = destination.replace(/\s/g, '+')
-  window.open(
-    `https://www.google.com.au/maps/dir/${currentLocation}/${destination}`,
-    '_blank'
   )
 }
 
