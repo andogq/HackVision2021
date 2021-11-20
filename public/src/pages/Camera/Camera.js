@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getFunctions, httpsCallable, connectFunctionsEmulator } from 'firebase/functions'
+import { getFunctions, httpsCallable, /* connectFunctionsEmulator */ } from 'firebase/functions'
 import app from 'fire'
 
 import { Navigation } from 'components'

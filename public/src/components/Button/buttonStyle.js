@@ -38,4 +38,10 @@ export const StyledButton = styled.button`
       justify-content: center;
     }
   }
+
+  &[data-small=true] {
+    padding: .6em 1em;
+    font-size: .7em;
+    width: initial;
+  }
 `

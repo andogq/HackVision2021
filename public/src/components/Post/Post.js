@@ -5,7 +5,6 @@ import {
   UserDetails,
   Title,
   Image,
-  Tags,
 } from './postStyle'
 import { Tag, TagContainer, Challenge } from 'components'
 
