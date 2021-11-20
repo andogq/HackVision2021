@@ -12,9 +12,11 @@ import {
   UserInfo,
 } from './profileStyle'
 
+import test from 'res/test.jpeg'
+
 const user = {
   name: 'John Deere',
-  image_url: '#',
+  image_url: test,
 }
 
 const Profile = () => {
