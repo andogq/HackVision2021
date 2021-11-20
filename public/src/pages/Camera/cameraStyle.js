@@ -14,7 +14,7 @@ export const Container = styled.main`
     }
   }
 
-  &::after {
+  &[data-loading=true]::after {
     content: '';
     position: absolute;
     width: 100%;

@@ -110,7 +110,7 @@ const db = getFirestore(app)
 const Results = () => {
   const { state: tags } = useLocation()
   const [sites, setSites] = useState([])
-  const [validTags, setValidTags] = useState([])
+  const [validTags, setValidTags] = useState()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -139,25 +139,24 @@ const Results = () => {
 
   return (
     <Container>
-      <h1>Results</h1>
-
-      {validTags.length > 0 ? (
-        <>
-          <p>The following materials were detected in your image. If they don't match what you were expecting, take a <Link to="/camera">new photo</Link>.</p>
-          {validTags.map(tag => (
-            <div key={tag.name}>
-              <h2>{tag.name}</h2>
-              {tag.sites.map(site => (
-                <Location key={site.name}>
-                  <span>{site.name}</span>
-                  <Button onClick={() => navigate("/map", { state: site })} small>View details</Button>
-                </Location>
-              ))}
-            </div>
-          ))}
-        </>
-      ) : (
-        <div>We couldn't find anything in that image! Try taking a <Link to="/camera">new photo</Link>.</div>
+      {validTags !== undefined && (
+        validTags.length > 0 ? (
+          <>
+            <h1>Results</h1>
+            <p>The following materials were detected in your image. If they don't match what you were expecting, take a <Link to="/camera">new photo</Link>.</p>
+            {validTags.map(tag => (
+              <div key={tag.name}>
+                <h2>{tag.name}</h2>
+                {tag.sites.map(site => (
+                  <Location key={site.name}>
+                    <span>{site.name}</span>
+                    <Button onClick={() => navigate("/map", { state: site })} small>View details</Button>
+                  </Location>
+                ))}
+              </div>
+            ))}
+          </>
+        ) : <div>We couldn't find anything in that image! Try taking a <Link to="/camera">new photo</Link>.</div>
       )}
 
       <Navigation />

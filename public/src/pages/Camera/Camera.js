@@ -92,7 +92,7 @@ const Camera = () => {
   }
   
   return (
-    <Container>
+    <Container data-loading={!isCapturing}>
       {isCapturing ? (
         <video ref={videoElement} />
       ) : (
