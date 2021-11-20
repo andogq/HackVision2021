@@ -11,6 +11,7 @@ export const Wrapper = styled.nav`
   right: 0;
   height: 70px;
   justify-content: space-around;
+  z-index: 1000;
 
   a {
     text-decoration: none;

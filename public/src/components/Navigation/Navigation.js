@@ -17,12 +17,13 @@ const Item = ({
   label,
   to,
   primary,
+  ...props
 }) => {
   const resolved = useResolvedPath(to)
   const match = useMatch({ path: resolved.pathname, end: true })
 
   return (
-    <Link to={to} title={label}>
+    <Link to={to} title={label} {...props}>
       <StyledItem data-primary={primary} data-active={!!match}>
         <div>{icon}</div>
         <span>{label}</span>
@@ -31,7 +32,7 @@ const Item = ({
   )
 }
 
-const Navigation = () => (
+const Navigation = ({ onCameraClick }) => (
   <Wrapper>
     <Item
       icon={<Compass />}
@@ -48,6 +49,7 @@ const Navigation = () => (
       to="/camera"
       label="Camera"
       primary
+      onClick={onCameraClick}
     />
     <Item
       icon={<Bookmark />}
