@@ -10,6 +10,13 @@ let defaultCenter = {
   lng: 151.18408587486766,
 }
 
+const siteTypes = [
+  'Transfer Station',
+  'Drop Off Point',
+  'Recycling Plant',
+  'Other',
+]
+
 const sites = [
   {
     name: 'Darebin Resource Recovery Center',
@@ -68,6 +75,7 @@ const MapView = () => {
         <PinDetails>
           <h1>{activePin.name}</h1>
           <span>{activePin.address}</span>
+          <Tag tag={siteTypes[activePin.type]} />
           <AcceptsContainer>
             <span>Accepts:</span>
             <TagContainer justify="flex-start">
