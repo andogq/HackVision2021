@@ -27,6 +27,7 @@ const Feed = () => {
       posts.push(doc.data())
     })
     setPosts(posts)
+    console.log('posts', posts)
   }
 
   useEffect(() => {
@@ -50,48 +51,15 @@ const Feed = () => {
         <button type="button" title="Filter"><Filter /></button>
       </SearchWrapper>
 
-      {posts.map((post) => <Post author={post.author} details={post.details} saved={post.saved} />)}
 
-      <Post author={{
-        id: 0,
-        name: 'John Deere',
-        image_url: test,
-      }} details={{
-        id: 0,
-        title: 'Test post',
-        image_url: test,
-        tags: ['test', 'recycle', 'challenge']
-      }} />
-      <Post author={{
-        id: 0,
-        name: 'John Deere',
-        image_url: test,
-      }} details={{
-        id: 0,
-        title: 'Test post',
-        tags: ['test', 'recycle', 'challenge']
-      }} />
-      <Post author={{
-        id: 0,
-        name: 'John Deere',
-        image_url: test,
-      }} details={{
-        id: 0,
-        title: 'Test post',
-        type: 'challenge',
-        tags: ['test', 'recycle', 'challenge', 'with', 'lots', 'of', 'tags', 'lol', 'hackathon']
-      }} />
-      <Post author={{
-        id: 0,
-        name: 'John Deere',
-        image_url: test,
-      }} details={{
-        id: 0,
-        title: 'Test post',
-        image_url: test,
-        type: 'challenge',
-        tags: ['test', 'recycle']
-      }} saved />
+      {posts.map((post, index) => (
+        <Post
+          key={index}
+          author={post.author}
+          details={post.details}
+          saved={post.saved}
+        />
+      ))}
 
       <Navigation />
     </Container>
