@@ -1,32 +1,15 @@
-import { Navigation, Map } from "components"
-
-const defaultCenter = {
-  name: "RMIT Building 80",
-  address: "445 Swanston Street Melbourne",
-  lat: -37.80811940260482,
-  lng: 144.96263556935406,
-}
-const pins = [
-  {
-    name: "Darebin Resource Recovery Center",
-    address: "Kurnai Avenue, Reservoir VIC 3073",
-    lat: -37.715784512691286,
-    lng: 144.98359122149628,
-  },
-  {
-    name: "Moonee Valley Transfer Station",
-    address: "188 Holmes Rd, Aberfeldie VIC 3040",
-    lat: -37.75813999854208,
-    lng: 144.90188040581572,
-  },
-]
+import { Link } from "react-router-dom"
 
 const Home = () => (
   <div>
-    <h1>Home page</h1>
+    <h1>GreenSnap</h1>
 
-    <Navigation />
-    <Map defaultCenter={defaultCenter} zoom={14} pins={pins} />
+    <p>How it works</p>
+    <p>Some info</p>
+
+    <p>
+      <Link to="/login">Login</Link> | <Link to="/signup">Signup</Link>
+    </p>
   </div>
 )
 
