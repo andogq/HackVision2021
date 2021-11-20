@@ -3,7 +3,7 @@ import {
   Compass,
   MapPin,
   Camera,
-  Star,
+  Bookmark,
   User,
 } from 'react-feather'
 
@@ -50,9 +50,9 @@ const Navigation = () => (
       primary
     />
     <Item
-      icon={<Star />}
-      to="/egg"
-      label="Other"
+      icon={<Bookmark />}
+      to="/saved"
+      label="Saved"
     />
     <Item
       icon={<User />}
