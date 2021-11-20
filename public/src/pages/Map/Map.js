@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Map, Navigation } from 'components'
+import { Map, Navigation, Button } from 'components'
 
 import { Container, PinDetails } from './mapStyle'
 
@@ -55,11 +55,30 @@ const MapView = () => {
         <PinDetails>
           <h1>{activePin.name}</h1>
           <span>{activePin.address}</span>
+          <span>Accepts:</span>
+          <ul>
+            {activePin.accepts.map((waste) => (
+              <li>{waste}</li>
+            ))}
+          </ul>
+          <Button onClick={() => getDirections(activePin)}>Directions</Button>
         </PinDetails>
       )}
 
       <Navigation />
     </Container>
+  )
+}
+
+const getDirections = (site) => {
+  // TODO get geo location
+  const currentLocation =
+    'RMIT+University+-+Building+80,+Swanston+Street,+Melbourne+VIC'
+  let destination = `${site.name}+${site.address}`
+  destination = destination.replace(/\s/g, '+')
+  window.open(
+    `https://www.google.com.au/maps/dir/${currentLocation}/${destination}`,
+    '_blank'
   )
 }
 
