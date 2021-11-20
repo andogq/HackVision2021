@@ -11,7 +11,7 @@ import { Tag, TagContainer, Challenge } from 'components'
 const Post = ({ author, details, saved }) => {
   return (
     <Wrapper>
-      <Link to={`/profile/${author.id}`}>
+      <Link to={`/profile/0`}>
         <UserDetails>
           <img src={author.image_url} alt={author.name} />
           <span>{author.name}</span>
@@ -31,7 +31,7 @@ const Post = ({ author, details, saved }) => {
       </Link>
 
       {details.type === 'challenge' ? (
-        <Challenge image={details.image_url} name={details.title} to={`/post/${details.id}`} />
+        <Challenge image={details.image_url} name={details.title} to={`/post/0`} />
       ) : (
         <Link to={`/post/${details.id}`}>
           <Title>{details.title}</Title>
