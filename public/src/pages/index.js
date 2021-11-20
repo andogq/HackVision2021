@@ -20,7 +20,7 @@ const globalStyles = css`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 5px 0;
+    padding: 5px 0 80px;
     box-sizing: border-box;
   }
   a {
@@ -34,6 +34,7 @@ const Pages = () => (
     text: '#222222',
     primary: '#68751A',
     primaryLight: '#AEC78F',
+    primaryBackground: '#F0FFF0',
     secondary: '#FFE978',
     error: '#D32F2F',
   }}>
