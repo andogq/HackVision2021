@@ -18,7 +18,7 @@ import {
   Tabs,
 } from './profileStyle'
 
-import test from 'res/test.jpeg'
+import test from 'res/avatars/john.jpg'
 
 const user = {
   name: 'John Deere',
