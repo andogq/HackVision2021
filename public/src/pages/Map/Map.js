@@ -72,7 +72,14 @@ const sites = [
     lat: -37.793861,
     lng: 145.000839,
     type: 2,
-    accepts: ['eWaste', 'Batteries', 'Cardboard', 'Plastic', 'Scrap Metal'],
+    accepts: [
+      'eWaste',
+      'Batteries',
+      'Cardboard',
+      'Plastic',
+      'Scrap Metal',
+      'Glass',
+    ],
   },
   {
     name: 'Brooklyn Transfer Station',
