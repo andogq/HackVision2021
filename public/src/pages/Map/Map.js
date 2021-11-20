@@ -1,9 +1,9 @@
 import { useState } from 'react'
-
 import { Map, Navigation } from 'components'
 
 import {
   Container,
+  PinDetails,
 } from './mapStyle'
 
 const defaultCenter = {
@@ -49,6 +49,13 @@ const MapView = () => {
         onClick={() => setActivePin(null)}
         onPinClick={pin => setActivePin(pin)}
       />
+
+      {activePin && (
+        <PinDetails>
+          <h1>{activePin.name}</h1>
+          <span>{activePin.address}</span>
+        </PinDetails>
+      )}
 
       <Navigation />
     </Container>
