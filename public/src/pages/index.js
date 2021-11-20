@@ -2,11 +2,12 @@ import { Routes, Route } from 'react-router-dom'
 import { ThemeProvider, Global, css } from '@emotion/react'
 
 import Home from './Home/Home'
+import Login from './Login/Login'
 
 const globalStyles = css`
   body {
     margin: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Fira Code', monospace;
     background: #FFFFFF;
     color: #222222;
   }
@@ -32,11 +33,13 @@ const Pages = () => (
     primary: '#68751A',
     primaryLight: '#AEC78F',
     secondary: '#FFE978',
+    error: '#D32F2F',
   }}>
     <Global styles={globalStyles} />
 
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   </ThemeProvider>
 )
