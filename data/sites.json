@@ -1,0 +1,21 @@
+[
+    {
+        "name": "Darebin Resource Recovery Center",
+        "address": "Kurnai Avenue, Reservoir VIC 3073",
+        "lat": -37.715784512691286,
+        "lng": 144.98359122149628,
+        "accepts": [
+            "Cans",
+            "Clothing",
+            "Batteries",
+            "eWaste",
+            "Glass",
+            "Paint",
+            "Cardboard",
+            "Scrap Metal",
+            "Mattresses",
+            "White Goods"
+        ],
+        "type": 2
+    }
+]
