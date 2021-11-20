@@ -48,6 +48,7 @@ const Post = ({
             <button
               type="button"
               onClick={() => console.log('tag clicked', tag)}
+              key={tag}
             >
               {tag}
             </button>
