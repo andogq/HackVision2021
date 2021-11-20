@@ -1,3 +1,7 @@
+import { useState, useEffect } from 'react'
+import { collection, getDocs, getFirestore } from 'firebase/firestore'
+import app from 'fire'
+
 import {
   Navigation,
   Post,
@@ -7,53 +11,38 @@ import {
   Container,
 } from './savedStyle'
 
-import test from 'res/test.jpeg'
+const db = getFirestore(app)
 
-const Saved = () => (
-  <Container>
-    <Post author={{
-      id: 0,
-      name: 'John Deere',
-      image_url: test,
-    }} details={{
-      id: 0,
-      title: 'Test post',
-      image_url: test,
-      tags: ['test', 'recycle', 'challenge']
-    }} saved />
-    <Post author={{
-      id: 0,
-      name: 'John Deere',
-      image_url: test,
-    }} details={{
-      id: 0,
-      title: 'Test post',
-      tags: ['test', 'recycle', 'challenge']
-    }} saved />
-    <Post author={{
-      id: 0,
-      name: 'John Deere',
-      image_url: test,
-    }} details={{
-      id: 0,
-      title: 'Test post',
-      type: 'challenge',
-      tags: ['test', 'recycle', 'challenge', 'with', 'lots', 'of', 'tags', 'lol', 'hackathon']
-    }} saved />
-    <Post author={{
-      id: 0,
-      name: 'John Deere',
-      image_url: test,
-    }} details={{
-      id: 0,
-      title: 'Test post',
-      image_url: test,
-      type: 'challenge',
-      tags: ['test', 'recycle']
-    }} saved />
+const Saved = () => {
+  const [posts, setPosts] = useState([])
 
-    <Navigation />
-  </Container>
-)
+  useEffect(() => {
+    const getPosts = async () => {
+      let posts = []
+      const querySnapshot = await getDocs(collection(db, 'posts'))
+      querySnapshot.forEach((doc) => {
+        posts.push(doc.data())
+      })
+      setPosts(posts.filter(post => post.saved))
+    }
+
+    getPosts()
+  }, [])
+
+  return (
+    <Container>
+      {posts.map((post, index) => (
+        <Post
+          key={index}
+          author={post.author}
+          details={post.details}
+          saved={post.saved}
+        />
+      ))}
+
+      <Navigation />
+    </Container>
+  )
+}
 
 export default Saved
