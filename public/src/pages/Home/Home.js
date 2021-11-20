@@ -1,12 +1,13 @@
-import {
-  Navigation,
-} from 'components'
+import { Link } from 'react-router-dom'
 
 const Home = () => (
   <div>
-    <h1>Home page</h1>
+    <h1>GreenSnap</h1>
 
-    <Navigation />
+    <p>How it works</p>
+    <p>Some info</p>
+
+    <p><Link to="/login">Login</Link> | <Link to="/signup">Signup</Link></p>
   </div>
 )
 
