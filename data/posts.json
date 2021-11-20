@@ -1,0 +1,43 @@
+[
+  {
+    "name": "John Smith",
+    "image_url": "res/posts/batteries.jpg"
+  },
+  {
+    "name": "Kim Hampton",
+    "image_url": "res/posts/bottles.jpg",
+    "tags": ["glass", "recycle", "challenge"]
+  },
+  {
+    "name": "Eleanor Strong",
+    "image_url": "res/posts/cans.jpg",
+    "tags": ["cans", "recycle", "challenge"]
+  },
+  {
+    "name": "Marvin Jones",
+    "image_url": "res/posts/light.jpg",
+    "tags": ["jar", "recycle", "challenge"]
+  },
+  {
+    "name": "Anna Scott",
+    "image_url": "res/posts/cardboard.jpg",
+    "tags": ["cardboard", "recycle", "challenge", "lots", "of", "tags", "🤠"]
+  },
+  {
+    "name": "Joseph Bates",
+    "tags": ["glass", "recycle", "challenge"]
+  },
+  {
+    "name": "Becky Powers",
+    "type": "challenge",
+    "tags": ["glass", "recycle", "challenge"]
+  },
+  {
+    "name": "Buddy Payne",
+    "image_url": "res/posts/gumboots.jpg"
+  },
+  {
+    "name": "Peter Parker",
+    "image_url": "res/posts/eWaste.jpg"
+  }
+]
