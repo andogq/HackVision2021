@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Filter, Search } from 'react-feather'
-
+import { collection, getDocs, getFirestore } from 'firebase/firestore'
+import app from 'fire'
 import {
   Navigation,
   Post,
@@ -12,9 +13,26 @@ import {
 } from './feedStyle'
 
 import test from 'res/test.jpeg'
+const db = getFirestore(app)
+
 
 const Feed = () => {
   const [q, setQ] = useState('')
+  const [posts, setPosts] = useState([])
+
+  const getPosts = async () => {
+    let posts = []
+    const querySnapshot = await getDocs(collection(db, 'posts'))
+    querySnapshot.forEach((doc) => {
+      posts.push(doc.data())
+    })
+    setPosts(posts)
+  }
+
+  useEffect(() => {
+    getPosts()
+  }, [])
+
 
   return (
     <Container>
