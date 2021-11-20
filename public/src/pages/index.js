@@ -20,6 +20,7 @@ const globalStyles = css`
     align-items: center;
     justify-content: center;
     padding: 5px 0;
+    box-sizing: border-box;
   }
   a {
     color: #68751A;

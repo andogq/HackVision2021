@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { Link, useNavigate } from 'react-router-dom'
 import { useProfileStore } from 'stores'
 import { getAuth } from 'firebase/auth'
 import app from 'fire'
@@ -11,8 +12,13 @@ import {
 } from 'components'
 
 import {
+  Logo,
+  Title,
   Form,
+  Center,
 } from './loginStyle'
+
+import logo from 'res/logo.svg'
 
 const defaultValues = {
   email: '',
@@ -24,6 +30,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false)
   const profile = useProfileStore(state => state.profile)
   const signIn = useProfileStore(state => state.signIn)
+  const navigate = useNavigate()
 
   const {
     register,
@@ -35,7 +42,7 @@ const Login = () => {
     const checkLogin = async user => {
       if (!user) return setIsLoading(false)
       if (profile) {
-        //TODO: redirect
+        navigate('/feed')
       } else {
         setIsLoading(false)
       }
@@ -59,6 +66,9 @@ const Login = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
+      <Logo src={logo} alt="" />
+      <Title>GreenSnap</Title>
+
       {error && (
         <Message error onClose={() => setError(null)}>
           {error}
@@ -87,6 +97,7 @@ const Login = () => {
         disabled={!isDirty || isLoading}
         loading={isLoading}
       >Login</Button>
+      <Center>Don't have an account? <Link to="/signup">Signup</Link>!</Center>
     </Form>
   )
 }
