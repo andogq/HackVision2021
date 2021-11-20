@@ -1,8 +1,9 @@
 import { Button } from 'components'
+import { Card } from './siteCardStyle'
 const SiteCard = ({ site }) => {
   // TODO turn li in badges
   return (
-    <div>
+    <Card>
       <h2>{site.name}</h2>
       <h3>{site.address}</h3>
       <p>Accepts:</p>
@@ -12,7 +13,7 @@ const SiteCard = ({ site }) => {
         ))}
       </ul>
       <Button onClick={() => getDirections(site)}>Directions</Button>
-    </div>
+    </Card>
   )
 }
 

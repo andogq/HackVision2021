@@ -1,4 +1,5 @@
 import { Map, SiteCard } from 'components'
+import { SiteContainer } from './mapStyle'
 
 const defaultCenter = {
   name: 'RMIT Building 80',
@@ -29,9 +30,11 @@ const MapView = () => {
   return (
     <div>
       <Map defaultCenter={defaultCenter} zoom={14} pins={sites} />
-      {sites.map((site) => (
-        <SiteCard site={site} />
-      ))}
+      <SiteContainer>
+        {sites.map((site) => (
+          <SiteCard site={site} />
+        ))}
+      </SiteContainer>
     </div>
   )
 }
