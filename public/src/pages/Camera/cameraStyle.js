@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
 export const Container = styled.main`
-  width: 420px;
+  width: 100%;
   max-width: 100%;
   position: relative;
 

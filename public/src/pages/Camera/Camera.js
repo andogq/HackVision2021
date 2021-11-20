@@ -1,9 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
-
+import { useNavigate } from 'react-router-dom'
 import { getFunctions, httpsCallable, connectFunctionsEmulator } from 'firebase/functions'
 import app from 'fire'
-
-import { useNavigate } from "react-router-dom";
 
 import { Navigation } from 'components'
 
@@ -20,9 +18,9 @@ const Camera = () => {
   const videoElement = useRef(null)
   const imageElement = useRef(null)
   const [stream, setStream] = useState(null)
-    const [isCapturing, setIsCapturing] = useState(true)
+  const [isCapturing, setIsCapturing] = useState(true)
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   
   useEffect(() => {
     let new_stream = undefined
@@ -79,11 +77,11 @@ const Camera = () => {
         imageElement.current.src = url
 
         // Upload the image
-          upload_image({ image: url.split(",", 2)[1] }).then(({ data }) => {
-              navigate("/results", {
-                  tags: [ ...data.map(({ description }) => description) ]
-              });
+        upload_image({ image: url.split(",", 2)[1] }).then(({ data }) => {
+          navigate("/results", {
+            tags: [ ...data.map(({ description }) => description) ]
           })
+        })
       })
     }, "image/jpeg")
 
